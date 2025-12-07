@@ -116,6 +116,19 @@ services:
     networks:
       iceberg_net:
 
+  iceberg-streamlit:
+    build: streamlit
+    restart: unless-stopped
+    container_name: iceberg-streamlit
+    ports:
+      - "8501:8501"
+    depends_on:
+      - minio
+    volumes:
+      - ./streamlit/app:/app
+    networks:
+      iceberg_net:
+
 networks:
   iceberg_net:
 
